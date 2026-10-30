@@ -1,0 +1,88 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: #f1f5f9;
+  color: #1e293b;
+  font-family: Inter, Arial, sans-serif;
+}
+
+.app {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+.app-header {
+  margin-bottom: 32px;
+}
+
+.app-header h1 {
+  margin: 0 0 8px;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.app-header p {
+  margin: 0;
+  color: #64748b;
+  font-size: 15px;
+}
+
+.app-section {
+  margin-bottom: 28px;
+  padding: 24px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.04);
+}
+
+.todo-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.todo-toolbar h2 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.add-todo-button {
+  padding: 11px 18px;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.add-todo-button:hover {
+  background: #1d4ed8;
+}
+
+@media (max-width: 600px) {
+  .app {
+    padding: 24px 14px;
+  }
+
+  .app-section {
+    padding: 16px;
+  }
+
+  .todo-toolbar {
+    align-items: flex-start;
+  }
+}

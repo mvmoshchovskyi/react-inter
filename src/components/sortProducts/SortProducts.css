@@ -1,0 +1,143 @@
+
+.products {
+  width: 100%;
+}
+
+.products-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.products-header h2 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.products-header span {
+  color: #64748b;
+  font-size: 13px;
+}
+
+.products-controls {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) auto auto;
+  gap: 16px;
+  align-items: end;
+  margin-bottom: 20px;
+}
+
+.products-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.products-input,
+.products-field select {
+  min-width: 140px;
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #fff;
+  color: #1e293b;
+  font: inherit;
+  font-size: 14px;
+  outline: none;
+}
+
+.products-input:focus,
+.products-field select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+}
+
+.products-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-left: 0;
+  list-style: none;
+}
+
+.product-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #f8fafc;
+  font-size: 14px;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.product-item:hover {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+}
+
+.product-id {
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.products-empty {
+  padding: 24px;
+  text-align: center;
+  color: #64748b;
+}
+
+.products-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.products-pagination button {
+  min-width: 36px;
+  height: 36px;
+  padding: 0 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  background: #fff;
+  color: #334155;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.products-pagination button:hover:not(:disabled) {
+  background: #eff6ff;
+  border-color: #93c5fd;
+}
+
+.products-pagination button.active {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #fff;
+}
+
+.products-pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+@media (max-width: 650px) {
+  .products-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .products-input,
+  .products-field select {
+    width: 100%;
+  }
+}

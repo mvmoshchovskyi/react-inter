@@ -1,0 +1,61 @@
+.todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 16px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.todo-item:hover {
+  background: #f9fafb;
+  border-color: #cbd5e1;
+}
+
+.todo-item-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+  cursor: pointer;
+}
+
+.todo-item-content input {
+  width: 18px;
+  height: 18px;
+  accent-color: #4f46e5;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.todo-item-title {
+  color: #1f2937;
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+
+.todo-item.completed .todo-item-title {
+  color: #9ca3af;
+  text-decoration: line-through;
+}
+
+.todo-item-remove {
+  padding: 7px 12px;
+  border: none;
+  border-radius: 6px;
+  background: #fee2e2;
+  color: #dc2626;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  flex-shrink: 0;
+}
+
+.todo-item-remove:hover {
+  background: #fecaca;
+}
