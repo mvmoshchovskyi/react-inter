@@ -16,7 +16,7 @@ function SortProducts() {
   const [debouncedSearch, setDebouncedSearch] = useState('');
   const [sortOrder, setSortOrder] = useState<SortOrder>('default')
   const [pageSize, setPageSize] = useState(3);
-  const filteredProducts = products.filter((product) => product.name.toLowerCase()
+  const filteredProducts = products.filter((product : typeof products[number]) => product.name.toLowerCase()
     .includes(debouncedSearch.toLowerCase()));
 
   const sortedProducts =
@@ -99,7 +99,7 @@ function SortProducts() {
       <p className="products-empty">No products found</p>
     ) : (
       <ol className="products-list">
-        {visibleProducts.map((product) => (
+        {visibleProducts.map((product: typeof products[number]) => (
           <li className="product-item" key={product.id}>
             <span className="product-id">#{product.id}</span>
             <span>{product.name}</span>

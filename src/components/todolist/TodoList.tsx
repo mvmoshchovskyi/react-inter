@@ -2,17 +2,13 @@ import { useMemo, useState } from "react";
 import useDebounce from "../../hooks/useDebounce";
 import TodoItem from "../todoItem/TodoItem";
 import "./TodoList.css";
-
-type Todo = {
-  id: number;
-  title: string;
-  completed: boolean;
-};
+import { type Todo } from "../../App";
 
 export type TodoItemProps = {
   todo: Todo;
   handleStatus: (id: number) => void;
   handleDelete: (id: number) => void;
+  handleEdit: (id: number) => void;
 };
 
 const filterTypes = ["all", "active", "completed"] as const;
@@ -22,9 +18,10 @@ type TodoListProps = {
   todos: Todo[];
   handleStatus: (id: number) => void;
   handleDelete: (id: number) => void;
+  handleEdit: (id: number) => void;
 };
 
-function TodoList({ todos, handleStatus, handleDelete }: TodoListProps) {
+function TodoList({ todos, handleStatus, handleDelete, handleEdit }: TodoListProps) {
   const [search, setSearch] = useState("");
   const debouncedSearch = useDebounce(search, 500);
   const [selectedFilter, setSelectedFilter] = useState<Filter>("all");
@@ -99,6 +96,7 @@ function TodoList({ todos, handleStatus, handleDelete }: TodoListProps) {
               todo={todo}
               handleStatus={handleStatus}
               handleDelete={handleDelete}
+              handleEdit={handleEdit}
             />
           ))
         )}

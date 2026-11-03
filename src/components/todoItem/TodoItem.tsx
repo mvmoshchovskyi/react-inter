@@ -2,7 +2,7 @@ import { memo } from "react";
 import { type TodoItemProps } from "../todolist/TodoList";
 import "./TodoItem.css";
 
-function TodoItem({ todo, handleStatus, handleDelete }: TodoItemProps) {
+function TodoItem({ todo, handleStatus, handleDelete, handleEdit }: TodoItemProps) {
   return (
     <li className={`todo-item ${todo.completed ? "completed" : ""}`}>
       <label className="todo-item-content">
@@ -17,7 +17,15 @@ function TodoItem({ todo, handleStatus, handleDelete }: TodoItemProps) {
 
       <button
         type="button"
-        className="todo-item-remove"
+        className="todo-item-btn edite"
+        onClick={() => handleEdit(todo.id)}
+        aria-label={`Delete ${todo.title}`}
+      >
+        Edit
+      </button>
+      <button
+        type="button"
+        className="todo-item-btn remove"
         onClick={() => handleDelete(todo.id)}
         aria-label={`Delete ${todo.title}`}
       >

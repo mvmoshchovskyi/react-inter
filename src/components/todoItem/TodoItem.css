@@ -43,12 +43,11 @@
   text-decoration: line-through;
 }
 
-.todo-item-remove {
+.todo-item-btn {
   padding: 7px 12px;
   border: none;
   border-radius: 6px;
-  background: #fee2e2;
-  color: #dc2626;
+
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
@@ -56,6 +55,20 @@
   flex-shrink: 0;
 }
 
-.todo-item-remove:hover {
+.remove {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.edite {
+  background: #e2f4fe;
+  color: #2c26dc;
+}
+
+.remove .edit :hover {
+  background: #fecaca;
+}
+
+.edit :hover {
   background: #fecaca;
 }

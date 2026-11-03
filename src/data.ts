@@ -11,4 +11,4 @@ export const products = [
   { id: 10, name: "Headphones" },
   { id: 11, name: "Microphone" },
   { id: 12, name: "Speaker" },
-];
+] as const;
