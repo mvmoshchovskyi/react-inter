@@ -29,7 +29,8 @@ function TodoList({ todos, handleStatus, handleDelete, handleEdit }: TodoListPro
   const filteredTodos = useMemo(
     () =>
       todos.filter((todo) => {
-        const matchesSearch = todo.title
+         const title = todo.title ?? "";
+        const matchesSearch = title
           .toLowerCase()
           .includes(debouncedSearch.toLowerCase().trim());
 

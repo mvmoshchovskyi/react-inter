@@ -3,6 +3,7 @@ import SortProducts from "./components/sortProducts/SortProducts";
 import TodoList from "./components/todolist/TodoList";
 import TodoModal from "./components/todoModal/TodoModal";
 import "./App.css";
+import useLocalStorage from "./hooks/useLocalStorage";
 
 export type Todo = {
   id: number;
@@ -23,8 +24,13 @@ const initialTodos: Todo[] = [
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [todos, setTodos] = useState<Todo[]>(initialTodos);
+
+const [todos, setTodos] = useLocalStorage<Todo>("todos", initialTodos);
   const [todoToEdit, setTodoToEdit] = useState<Todo | null>(null);
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   useEffect(() => {
     if (!isModalOpen) return;
