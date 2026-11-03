@@ -14,6 +14,11 @@ type ModalType = {
   todoToEdit?: Todo | null; // null — створення, Todo — редагування
 };
 
+type FormErrors = {
+  title: string;
+  description: string;
+};
+
 function TodoModal({
   isOpen,
   onClose,
@@ -27,6 +32,23 @@ function TodoModal({
     description: "",
   });
 
+  const [errors, setErrors] = useState<FormErrors>({
+    title: "",
+    description: "",
+  });
+
+  useEffect(() => {
+  setFormTitle({
+    title: todoToEdit?.title ?? "",
+    description: todoToEdit?.description ?? "",
+  });
+
+  setErrors({
+    title: "",
+    description: "",
+  });
+}, [todoToEdit, isOpen]);
+
   useEffect(() => {
     setFormTitle({
       title: todoToEdit?.title ?? "",
@@ -36,14 +58,59 @@ function TodoModal({
 
   if (!isOpen) return null;
 
-  const handleFormTitle = (e: ChangeEvent<HTMLInputElement>) => {
-    setFormTitle((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  type FieldName = keyof TodoFormData;
+
+  function validate(field: FieldName, value: string): string {
+    switch (field) {
+      case "title":
+        return !value.trim() ? "Введи назву завдання" : "";
+
+      case "description":
+        return value.length > 200
+          ? "Опис не може перевищувати 200 символів"
+          : "";
+
+      default:
+        return "";
+    }
+  }
+
+  const validateField = (field: FieldName, value: string) => {
+    setErrors((prev) => ({
+      ...prev,
+      [field]: validate(field, value),
+    }));
+  };
+
+    const handleFormChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const field = e.target.name as keyof TodoFormData;
+    const value = e.target.value;
+
+    setFormTitle((prev) => ({ ...prev, [field]: value }));
+
+    if (errors[field]) {
+      setErrors((prev) => ({
+        ...prev,
+        [field]: validate(field, value),
+      }));
+    }
   };
 
   const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const newErrors: FormErrors = {
+      title: validate("title", formTitle.title),
+      description: validate("description", formTitle.description),
+    };
+
+    setErrors(newErrors);
+
+    if (Object.values(newErrors).some(Boolean)) return;
+
     handleSave(formTitle);
-    setFormTitle({ title: "", description: "" });
   };
 
   return (
@@ -61,16 +128,18 @@ function TodoModal({
           </button>
         </div>
 
-        <form onSubmit={submitForm} className="modal-form">
+        <form onSubmit={submitForm} className="modal-form" noValidate>
           <label htmlFor="todo-title">Title</label>
           <input
             id="todo-title"
             name="title"
             placeholder="What needs to be done?"
-            required
             value={formTitle.title}
-            onChange={handleFormTitle}
+            onChange={handleFormChange}
+            onBlur={() => validateField("title", formTitle.title)}
+            aria-invalid={Boolean(errors.title)}
           />
+          {errors.title && <p className="field-error">{errors.title}</p>}
 
           <label htmlFor="todo-description">Description</label>
           <textarea
@@ -78,14 +147,14 @@ function TodoModal({
             name="description"
             placeholder="Add some details..."
             value={formTitle.description}
-            onChange={(e) =>
-              setFormTitle((prev) => ({
-                ...prev,
-                description: e.target.value,
-              }))
-            }
+            onChange={handleFormChange}
             rows={4}
+            onBlur={() => validateField("description", formTitle.description)}
+            aria-invalid={Boolean(errors.description)}
           />
+          {errors.description && (
+            <p className="field-error">{errors.description}</p>
+          )}
 
           <div className="modal-actions">
             <button

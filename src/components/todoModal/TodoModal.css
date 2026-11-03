@@ -131,3 +131,10 @@
     transform: translateY(0) scale(1);
   }
 }
+
+.field-error{
+  background-color: rgb(255, 179, 0);
+  color: rgb(255, 0, 119);
+  border: 2px solid rgb(255, 0, 119);;
+  border-radius: 5px;
+}
