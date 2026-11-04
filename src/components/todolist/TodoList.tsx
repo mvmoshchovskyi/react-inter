@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import useDebounce from "../../hooks/useDebounce";
 import TodoItem from "../todoItem/TodoItem";
 import "./TodoList.css";
-import { type Todo } from "../../App";
+import type { Todo } from "../../types/todo";
 
 export type TodoItemProps = {
   todo: Todo;

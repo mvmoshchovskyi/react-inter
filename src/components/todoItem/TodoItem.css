@@ -36,6 +36,11 @@
   color: #1f2937;
   font-size: 15px;
   overflow-wrap: anywhere;
+  text-decoration: none;
+}
+
+.todo-item-title:hover {
+  text-decoration: underline;
 }
 
 .todo-item.completed .todo-item-title {

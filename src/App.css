@@ -35,6 +35,31 @@ body {
   font-size: 15px;
 }
 
+.app-nav {
+  display: flex;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.app-nav a {
+  padding: 8px 14px;
+  border-radius: 8px;
+  color: #475569;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+
+.app-nav a:hover {
+  background: #e2e8f0;
+}
+
+.app-nav a.active {
+  background: #2563eb;
+  color: #fff;
+}
+
 .app-section {
   margin-bottom: 28px;
   padding: 24px;

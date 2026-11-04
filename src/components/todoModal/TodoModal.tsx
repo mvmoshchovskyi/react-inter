@@ -1,11 +1,6 @@
 import { type ChangeEvent, useState, useEffect } from "react";
-import { type Todo } from "../../App";
+import type { Todo, TodoFormData } from "../../types/todo";
 import "./TodoModal.css";
-
-type TodoFormData = {
-  title: string;
-  description: string;
-};
 
 type ModalType = {
   isOpen: boolean;
@@ -25,8 +20,6 @@ function TodoModal({
   handleSave,
   todoToEdit = null,
 }: ModalType) {
-  console.log(todoToEdit);
-
   const [formTitle, setFormTitle] = useState({
     title: "",
     description: "",
@@ -38,23 +31,32 @@ function TodoModal({
   });
 
   useEffect(() => {
-  setFormTitle({
-    title: todoToEdit?.title ?? "",
-    description: todoToEdit?.description ?? "",
-  });
-
-  setErrors({
-    title: "",
-    description: "",
-  });
-}, [todoToEdit, isOpen]);
-
-  useEffect(() => {
     setFormTitle({
       title: todoToEdit?.title ?? "",
       description: todoToEdit?.description ?? "",
     });
+
+    setErrors({
+      title: "",
+      description: "",
+    });
   }, [todoToEdit, isOpen]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 

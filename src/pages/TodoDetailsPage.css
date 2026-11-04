@@ -1,0 +1,82 @@
+.todo-details {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.todo-details-back {
+  align-self: flex-start;
+  color: #2563eb;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.todo-details-back:hover {
+  text-decoration: underline;
+}
+
+.todo-details-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.todo-details-header h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.todo-details-status {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #e0f2fe;
+  color: #0369a1;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.todo-details-status.completed {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.todo-details-description {
+  margin: 0;
+  color: #475569;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.todo-details-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.todo-details-actions button {
+  padding: 9px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #fff;
+  color: #1e293b;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.todo-details-actions button:hover {
+  background: #f1f5f9;
+}
+
+.todo-details-actions .todo-details-delete {
+  border-color: #fecaca;
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.todo-details-actions .todo-details-delete:hover {
+  background: #fecaca;
+}

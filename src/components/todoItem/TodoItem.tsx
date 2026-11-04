@@ -1,4 +1,5 @@
 import { memo } from "react";
+import { Link } from "react-router-dom";
 import { type TodoItemProps } from "../todolist/TodoList";
 import "./TodoItem.css";
 
@@ -12,14 +13,16 @@ function TodoItem({ todo, handleStatus, handleDelete, handleEdit }: TodoItemProp
           checked={todo.completed}
         />
 
-        <span className="todo-item-title">{todo.title}</span>
+        <Link className="todo-item-title" to={`/todos/${todo.id}`}>
+          {todo.title}
+        </Link>
       </label>
 
       <button
         type="button"
         className="todo-item-btn edite"
         onClick={() => handleEdit(todo.id)}
-        aria-label={`Delete ${todo.title}`}
+        aria-label={`Edit ${todo.title}`}
       >
         Edit
       </button>
